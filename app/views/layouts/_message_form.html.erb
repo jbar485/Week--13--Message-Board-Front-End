@@ -1,0 +1,9 @@
+<%= render "layouts/errors", :object => @message %>
+
+<%= form_for [@group, @message] do |f| %>
+  <%= f.label :author %><br>
+  <%= f.text_field :author %><br>
+  <%= f.label :content %><br>
+  <%= f.text_area :content %><br>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,27 @@
+<h3><%= @group.name %></h3>
+<h4><%= @group.genre %></h4>
+
+<% if @group.messages.any? %>
+<h4>Messages:</h4>
+
+<% @group.messages.each do |message| %>
+<p>
+  "<%= link_to message.content_body, group_message_path(@group, message) %>"
+</p>
+<% end %>
+<% else %>
+<p>No messages are listed for this group.</p>
+<% end %>
+
+<% if current_user %>
+<%= link_to '<button type="button" class="button jello-horizontal">Add a Message</button>'.html_safe, new_group_message_path(@group) %>
+
+<% if current_user.admin %>
+<%= link_to '<button type="button" class="button jello-horizontal">Edit</button>'.html_safe, edit_group_path %>
+
+<%= link_to '<button type="button" class="button jello-horizontal">Delete</button>'.html_safe, group_path(@group), :data => {:confirm => "You sure?",
+:method => "delete"}  %>
+
+<% end %>
+
+<% end %>

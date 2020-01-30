@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  essage Board<title></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <div class="foreground">
+    <header class='clearfix'>
+      <div class="right-nav">
+        <ul>
+          <li><%= link_to "Groups", groups_path %></li>
+        </ul>
+      </div>
+      <div class="right-nav">
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+        </ul>
+      </div>
+      <div class="left-nav">
+        <ul>
+          <% if current_user %>
+          <%= current_user.email %> | <%= ( current_user.admin === true ? "Admin" : "User" ) %> | <%= link_to "Sign out", '/signout' %>
+          <% else %>
+          <%= link_to "Sign up", 'signup' %> | <%= link_to "Sign-in", '/signin' %>
+          <% end %>
+        </ul>
+      </div>
+    </header>
+    <div class="store_name tracking-in-contract-bck">
+      <h1>Code Links</h1>
+    </div>
+
+    <%= flash[:alert] %>
+    <%= flash[:notice] %>
+
+
+    <div class='content'>
+      <%= yield %>
+    </div>
+  </div>
+
+  <div class="midground">
+
+  </div>
+
+  <div class="background">
+  </div>
+</body>
+</html>

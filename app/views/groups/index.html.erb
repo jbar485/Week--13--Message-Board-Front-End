@@ -1,0 +1,18 @@
+<h3>Groups</h3>
+<% if @groups.any? %>
+<% @groups.each do |group| %>
+<p><%= link_to group.name, group_path(group) %></p>
+<% end %>
+<% else %>
+<p>No groups to display</p>
+<% end %>
+
+
+<% if current_user %>
+
+<% if current_user.admin %>
+<%=  link_to '<button type="button" class="button jello-horizontal">New Group</button>'.html_safe, new_group_path %>
+
+<% end %>
+
+<% end %>

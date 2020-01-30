@@ -1,0 +1,15 @@
+<h3>Group: <%= @group.name %></h3>
+<h4>Author: <%= @message.rating %> </h4>
+<h4>Content: <%= @message.rating %> </h4>
+
+<%= link_to '<button type="button" class="button jello-horizontal">Back to Group</button>'.html_safe, group_path(@group) %>
+
+<% if current_user %>
+<% if current_user.admin %>
+<%= link_to '<button type="button" class="button jello-horizontal">Edit Review</button>'.html_safe, edit_group_message_path(@group, @message) %>
+
+<%= link_to '<button type="button" class="button jello-horizontal">Delete Review</button>'.html_safe, group_message_path(@group, @message), :data => {:confirm => "You sure?",
+:method => "delete"}  %>
+
+<% end %>
+<% end %>
